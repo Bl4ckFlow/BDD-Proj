@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Ressources/folder.cpp"
+#include "Ressources/account.cpp"
 
 using namespace std;
 
@@ -16,6 +17,8 @@ Folder User("User", &root, &Result);
 Folder Desktop("Desktop", &User, &Result);
 Folder Downloads("Downloads", &User, &Result);
 Folder Documents("Documents", &User, &Result);
+Account Root("Root", 3);
+
     
 File First("First", &User, &Result);
 
@@ -149,6 +152,15 @@ void CreateF ( string input, string name ) {
     }
 }
 
+Account* SearchAccount(string name){
+    bool found=false;
+    Account* temp = &Root;
+    while(temp->name != name){
+        temp = temp->Next;
+    }
+    return temp;
+}
+
 
 void Command ( string input ) {
     stringstream ss(input);
@@ -173,6 +185,18 @@ void Command ( string input ) {
             CreateDir(current_directory,argument);
         }  else if ( command == "touch" ) {
             CreateF(current_directory,argument);
+        } else if ( command == "SetAccessLvl") {
+            int access = token[2];
+            cout << "Enter access lvl";
+            if (access != 1 || access != 2 || access != 3){
+                cout << "Access lvl not recognized";
+            }
+            SearchAccount(argument)->AccessibiliyLvl = access ;
+        }else if( command == "NewUser" ) {
+            Account temp = Root;
+            temp.Next = new Account(argument);
+            cout << "New User created with success.\n";
+            cout << "AccessibilityLvl set to lowest settings.\n";
         } else if ( command == "echo" ) {
             for ( int i = 1; i<tokens.size(); i++ ) {
                 cout << tokens[i] << " ";
@@ -189,7 +213,9 @@ void Command ( string input ) {
             cout << current_directory << endl;
         } else if ( command == "cls" ) {
             system("cls");
-        } else if ( command == "ls" ) {
+        } else if( command == "exit"){
+            exit(0);
+        }else if ( command == "ls" ) {
             DisplayFolder(current_directory, root);
         } else {
             cout << "\033[31m" << "Uknown Command !" << "\033[0m" << endl;

@@ -1,0 +1,33 @@
+This program is just to emulate the the Linux Shell.
+It is not completed and not optimised, i'll continue and start finishing it some time to have a better version.
+
+## How to use
+
+```
+
+$ ls : to see the files in the current directory
+$ cd : to change the directory
+$ pwd : to see the current directory
+$ touch : to create a file
+$ mkdir : to create a directory
+$ cls : to clear the screen
+$ exit : to exit the shell
+$ echo : to print something
+
+```
+
+## UNFINISHED FEATURES
+
+$ SetAccessLvl : to set the permissions of a file or a directory
+$ NewUser : to create a new User
+
+```
+## UPCOMING FEATURES
+
+$ rm : to remove a file
+$ rmdir : to remove a directory
+$ mv : to move a file or a directory
+$ cp : to copy a file or a directory
+$ cat : to see the content of a file
+
+```
