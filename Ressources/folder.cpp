@@ -10,7 +10,7 @@ class Folder;
 class File {
     public:
         string Name;
-		string Content = "";
+	string Content = "";
         File* Next = NULL;
 
         File ( string Name, Folder* Parent, bool* Result);
